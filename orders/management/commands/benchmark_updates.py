@@ -10,6 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Establish sandbox records
+        User.objects.filter(username__in=['sig_bench', 'srv_bench']).delete()
         user_signal = User.objects.create_user(username='sig_bench', password='pwd')
         user_service = User.objects.create_user(username='srv_bench', password='pwd')
         
